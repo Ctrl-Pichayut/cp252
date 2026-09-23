@@ -1,10 +1,12 @@
 class Expense {
   /**
-   Represents a Expense.
-   @constructor
-   @param {date} date - The date of the expense.
-   @param {float} income - The author of the book.
- */
+   * Represents an Expense entry.
+   * @constructor
+   * @param {string} date - The date of the transaction.
+   * @param {number} income - The income amount.
+   * @param {number} expense - The expense amount.
+   * @param {string} detail - Description or details of the transaction.
+   */
   constructor(date, income, expense, detail) {
     this.date = date;
     this.income = parseFloat(income) || 0;
@@ -14,39 +16,51 @@ class Expense {
 }
 
 /**
- * Class ExpenseModel.
+ * Class representing the expense model.
  * @class
  */
 class ExpenseModel {
   constructor() {
+    /** @type {Expense[]} */
     this.expenses = [];
   }
 
-/**
- * add expense numbers passed to the function.
- * @param {float} expense - A positive number.
- */
+  /**
+   * Adds an expense object to the list.
+   * @param {Expense} expense - An Expense instance to add.
+   */
   add(expense) {
     this.expenses.push(expense);
   }
 
-/**
- * return expense numbers from stack.
- * @return {array} expense - array of positive number
- */
-
+  /**
+   * Returns all recorded expense entries.
+   * @returns {Expense[]} Array of Expense instances.
+   */
   getAll() {
     return this.expenses;
   }
 
+  /**
+   * Calculates the total income across all entries.
+   * @returns {number} Sum of all income entries.
+   */
   getTotalIncome() {
     return this.expenses.reduce((sum, exp) => sum + exp.income, 0);
   }
 
+  /**
+   * Calculates the total expense amount across all entries.
+   * @returns {number} Sum of all expense entries.
+   */
   getTotalExpense() {
     return this.expenses.reduce((sum, exp) => sum + exp.expense, 0);
   }
 
+  /**
+   * Calculates the remaining balance.
+   * @returns {number} The net remaining amount (income minus expenses).
+   */
   getMoneyLeft() {
     return this.getTotalIncome() - this.getTotalExpense();
   }
