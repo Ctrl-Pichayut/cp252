@@ -29,7 +29,7 @@ jobs:
       run: cd lab8jest && npm install
 
     - name: Test
-      run: npm run test && npm run test
+      run: cd lab8jest && npm run test
 
 
         
