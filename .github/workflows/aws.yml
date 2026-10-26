@@ -12,7 +12,7 @@ jobs:
 
       - name: Zip application
         run: |
-          cd jestway
+          cd lab8jest
           zip -r app.zip . -x "*.git*" "test/*"
 
       - name: Configure AWS credentials
@@ -25,7 +25,7 @@ jobs:
 
       - name: Upload to S3
         run: |
-          cd jestway
+          cd lab8jest
           aws s3 cp app.zip s3://${{ secrets.S3_BUCKET }}/app-${{ github.sha }}.zip
 
       - name: Create new application version
